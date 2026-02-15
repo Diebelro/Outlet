@@ -103,7 +103,7 @@ export default async function ProductDetailPage({
               <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', whiteSpace: 'pre-wrap' }}>
                 {product.description}
               </p>
-              {product.sizes?.length > 0 && (
+              {Array.isArray(product.sizes) && product.sizes.length > 0 && (
                 <div style={{ marginBottom: '1rem' }}>
                   <strong style={{ display: 'block', marginBottom: '0.5rem' }}>Mărimi disponibile:</strong>
                   <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>

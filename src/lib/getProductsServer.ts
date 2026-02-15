@@ -95,7 +95,7 @@ export async function getProductByIdServer(id: string): Promise<ProductItem | nu
   try {
     await connectDB();
     const p = await Product.findById(id).lean();
-    if (p && p._id) {
+    if (p && !Array.isArray(p) && p._id) {
       return {
         _id: String(p._id),
         name: p.name,

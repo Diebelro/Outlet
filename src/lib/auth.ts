@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 import crypto from 'crypto';
 
 const COOKIE_NAME = 'admin_session';
-const SECRET = process.env.ADMIN_SESSION_SECRET || 'dev-secret-change-in-production';
+const SECRET = process.env.SESSION_SECRET || process.env.ADMIN_SESSION_SECRET || 'dev-secret-change-in-production';
 
 export function signSession(email: string): string {
   const payload = JSON.stringify({ email, exp: Date.now() + 7 * 24 * 60 * 60 * 1000 });
@@ -31,7 +31,10 @@ export async function getAdminSession(): Promise<{ email: string } | null> {
 }
 
 export function getSessionCookieHeader(value: string, maxAge = 7 * 24 * 60 * 60): string {
-  return `${COOKIE_NAME}=${value}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAge}`;
+  const isProd = process.env.VERCEL || process.env.NODE_ENV === 'production';
+  const sameSite = isProd ? 'SameSite=Lax' : 'SameSite=Lax';
+  const secure = isProd ? '; Secure' : '';
+  return `${COOKIE_NAME}=${value}; Path=/; HttpOnly; ${sameSite}; Max-Age=${maxAge}${secure}`;
 }
 
 export function getDeleteCookieHeader(): string {

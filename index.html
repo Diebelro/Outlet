@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Haine & Încălțăminte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">Shop<span>Wear</span></a>
+      <div class="header-right">
+        <button class="cart-btn" id="cartBtn" aria-label="Coș">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Haine & Încălțăminte</h1>
+        <p>Geci, pantaloni, tricouri, adidași — tot ce ai nevoie</p>
+      </div>
+    </section>
+
+    <section class="shop">
+      <div class="container">
+        <div class="main-tabs" id="mainTabs"></div>
+        <div class="sub-tabs" id="subTabs"></div>
+        <div class="filter-size-wrap">
+          <span class="filter-size-label">Mărime:</span>
+          <div class="size-tabs" id="sizeTabs"></div>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Coș</h3>
+      <button class="close-cart" id="closeCart" aria-label="Închide">×</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty" id="cartEmpty">Coșul este gol</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <strong id="cartTotal">0 lei</strong>
+      </div>
+      <button class="btn-checkout" id="checkoutBtn" disabled>Finalizează</button>
+    </div>
+  </aside>
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 ShopWear — Haine și încălțăminte</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

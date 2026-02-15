@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin – Autentificare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #faf9f6;
+      padding: 1rem;
+    }
+    .login-box {
+      width: 100%;
+      max-width: 360px;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    }
+    h1 {
+      font-size: 1.35rem;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+    .subtitle {
+      color: #6b6b6b;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+      color: #1a1a1a;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #e8e4dc;
+      border-radius: 8px;
+      background: #fff;
+    }
+    input:focus {
+      outline: none;
+      border-color: #a67c52;
+      box-shadow: 0 0 0 3px rgba(166,124,82,0.15);
+    }
+    .btn {
+      width: 100%;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 8px;
+      background: #a67c52;
+      color: #fff;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn:hover { background: #8b6914; }
+    .error {
+      margin-bottom: 1rem;
+      padding: 0.5rem 0.75rem;
+      background: #fce8e8;
+      color: #c00;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    .back {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #6b6b6b;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .back:hover { color: #1a1a1a; }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h1>Panou Administrator</h1>
+    <p class="subtitle">Introdu username și parola. Doar utilizatorii autentificați pot modifica produsele.</p>
+
+    <div id="errorBox" class="error" style="display: none;" role="alert"></div>
+
+    <form method="post" action="/admin/login">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label for="password">Parolă</label>
+        <input type="password" id="password" name="password" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn">Autentificare</button>
+    </form>
+
+    <a href="/" class="back">← Înapoi la site</a>
+  </div>
+
+  <script>
+    var params = new URLSearchParams(window.location.search);
+    var err = params.get('error');
+    if (err === '1') {
+      document.getElementById('errorBox').style.display = 'block';
+      document.getElementById('errorBox').textContent = 'Username sau parolă incorecte.';
+    } else if (err === '2') {
+      document.getElementById('errorBox').style.display = 'block';
+      document.getElementById('errorBox').textContent = 'MongoDB nu e conectat. Adaugă MONGODB_URI în .env.local și repornește serverul (node server.js). Sau folosește admin pe http://localhost:3000/admin';
+    }
+  </script>
+</body>
+</html>
